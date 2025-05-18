@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+body{
+    margin :0;
+    font-family: 'Lobster', cursive;
+}
+.container{
+    height:100vh;
+    overflow-x: hidden;
+    perspective: 20px;
+}
+.parallax{
+    height:100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transform-style: preserve-3d;
+}
+.bg{
+	top:-1%;
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background-image: url(images/img1.jpg);
+    background-size: cover;
+    background-position: center;
+    transform: translateZ(-10px) scale(1.);
+}
+.content{
+	 color: #d1c3ae;
+    color: white;
+    font-size: 50px;
+    margin: 0;
+    text-shadow: 0 0px 20px #d2af76;
+	
+    #color:#fff;
+    #font-size: xxx-large;
+    transform: translateZ(10px);
+}
+.content h5{
+	bottom:0;
+	color: #d1c3ae;
+    color: white;
+    font-size: 50px;
+    margin: 0;
+    text-shadow: 0 0px 20px #d2af76;
+	font-size: 24%;
+}
+.content h1{
+	bottom:0;
+	color: #d1c3ae;
+    color: white;
+    font-size: 50px;
+    margin: 0;
+    text-shadow: 0 0px 20px #d2af76;
+	font-size: 24%;
+}
+.static{
+    height:100vh;
+    background-image: linear-gradient(
+        to bottom 5%,
+        transparent,
+        #1B2735 50px
+    );
+    transform: translateY(-50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    font-size: 100%;
+	
+} 
+
+.robot1{
+    position: absolute;
+    width:60px;
+    transform: translateZ(17px)
+        translateX(-50px) translateY(20px)
+    ;
+}
+.robot2{
+    position: absolute;
+    width:300px;
+    transform: translateZ(5px)
+        translateX(200px) translateY(30px)
+    ;
+}
+
+
+.tab{
+    min-height: 100vh;
+    background-color: #010302;
+    z-index: 1;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.tab::before{
+    position: absolute;
+    height: 200px;
+    width: 100vw;
+    background: linear-gradient(
+        to top, #010302, transparent
+    );
+    content: '';
+    bottom: 100%;
+    left: 0;
+}
+
+.tab.tab1 .contents{
+    width: 900px;
+    max-width: 90%;
+    color: #eee;
+}
+.tab.tab1 .contents .des{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
