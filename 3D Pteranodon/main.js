@@ -42,13 +42,14 @@ groundMesh.receiveShadow = true;
 scene.add(groundMesh);
 
 const spotLight = new THREE.SpotLight(0xffffff, 3000, 100, 0.22, 1);
+
 spotLight.position.set(0, 25, 0);
 spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
-const loader = new GLTFLoader().setPath('public/pteranodon/');
-loader.load('pteranodon.gltf', (gltf) => {
+const loader = new GLTFLoader().setPath('public/millennium_falcon/');
+loader.load('scene.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
