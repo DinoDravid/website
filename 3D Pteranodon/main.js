@@ -48,8 +48,8 @@ spotLight.castShadow = true;
 spotLight.shadow.bias = -0.0001;
 scene.add(spotLight);
 
-const loader = new GLTFLoader().setPath('public/p/');
-loader.load('scene.gltf', (gltf) => {
+const loader = new GLTFLoader().setPath('public/pteranodon/');
+loader.load('pteranodon.gltf', (gltf) => {
   console.log('loading model');
   const mesh = gltf.scene;
 
