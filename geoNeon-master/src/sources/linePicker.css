@@ -1,0 +1,56 @@
+.line_pick {
+  position: absolute;
+  width: 1500px;
+  left: 500px;
+  top: 50px;
+}
+.line_pick .line_picker {
+  float: left;
+  margin: 10px;
+  padding: 8px 11px;
+  width: 176px;
+  opacity: 1;
+}
+
+.line_pick .line_div {
+  z-index: -99;
+  width: 176px;
+  border-radius: 2px;
+  background: #e05c72;
+  opacity: 1;
+}
+
+.line_pick .line_div:hover {
+
+}
+.line_picker div {
+  pointer-events: none;
+  z-index: 999;
+  line-height: 33px;
+  font-size: 25px;
+  font-family: MicrosoftYaHei;
+  color: aliceblue;
+}
+
+.line_name{
+  float:left;
+  text-align: start;
+  width:100px;
+  font-weight: 200;
+}
+.line_count{
+  float: right;
+  text-align: end;
+  font-weight: 400;
+}
+.line_carry{
+  float: left;
+  width: 100%;
+  text-align: end;
+  font-weight: 400;
+
+}
+
+.line_pick .checked {
+  opacity: 0.9;
+}
