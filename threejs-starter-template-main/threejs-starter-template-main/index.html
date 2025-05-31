@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Three.js Project</title>
+    <style type="text/css">
+        html,
+        body {
+            overflow: hidden;
+        }
+
+        body {
+            overscroll-behavior: none;
+        }
+
+        /* The next rule is a simple CSS reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #webgl-container {
+            /*position: fixed;
+            top: 0;
+            left: 0;*/
+            width: 100vw;
+            height: 100vh;
+            outline: none;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="webgl-container"></div>
+    <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
