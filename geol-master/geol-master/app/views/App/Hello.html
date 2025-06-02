@@ -1,0 +1,27 @@
+{{set . "title" "GTS"}}
+{{template "header.html" .}}
+
+<header class="navigation" style="background-color:#acadae">
+
+  <div class="container">
+    <div class="row">
+      <div class="hero-text">
+        <h1>Geological Time Scale</h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div>
+    </div>
+      <p>{{.form_value}} has arrived</p>
+      <a href="/">Back to Index</a>
+    <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
