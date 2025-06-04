@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Megalodon Real-Time Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="UTF-8">
+  <title>Megalodon Timeline</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: #555;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .entry {
+      padding: 20px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    .entry.left {
+      left: 0;
+    }
+
+    .entry.right {
+      left: 50%;
+    }
+
+    .entry::before {
+      content: " ";
+      position: absolute;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #2ecc71;
+      border: 4px solid #111;
+      z-index: 1;
+    }
+
+    .entry.left::before {
+      right: -10px;
+    }
+
+    .entry.right::before {
+      left: -10px;
+    }
+
+    .entry-content {
+      padding: 20px;
+      background: #222;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .entry h3 {
+      margin-top: 0;
+      color: #ffcd56;
+    }
+
+    @media (max-width: 768px) {
+      .entry, .entry.right, .entry.left {
+        width: 100%;
+        left: 0;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .entry::before {
+        left: calc(50% - 10px);
+      }
+    }
+  </style>
+   <style>
+    body {
+      margin: 0;
+      background: #111;
+      font-family: 'Segoe UI', sans-serif;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      margin: 20px;
+      color: #00e1ff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      width: 90%;
+      max-width: 1400px;
+    }
+    .chart-box {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    canvas {
+      background: #181818;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Megalodon Timeline</h1>
+
+  <div class="timeline">
+    <div class="entry left">
+      <div class="entry-content">
+        <h3>~23 mya (Early Miocene)</h3>
+        <p><strong>Megalodon appears</strong> as a top predator in warm oceans. Likely evolved from <em>Otodus obliquus</em>.</p>
+      </div>
+    </div>
+
+    <div class="entry right">
+      <div class="entry-content">
+        <h3>15–10 mya (Mid Miocene)</h3>
+        <p><strong>Peak of its reign</strong> — warm seas and plenty of prey. Megalodon expands its range globally.</p>
+      </div>
+    </div>
+
+    <div class="entry left">
+      <div class="entry-content">
+        <h3>~5 mya (Late Miocene–Pliocene)</h3>
+        <p><strong>Climate cools</strong>, food sources decline. Early orcas emerge as competitors.</p>
+      </div>
+    </div>
+
+    <div class="entry right">
+      <div class="entry-content">
+        <h3>~3.6 mya (Pliocene Epoch)</h3>
+        <p><strong>Extinction of Megalodon</strong> likely caused by environmental shifts and prey loss.</p>
+      </div>
+    </div>
+
+    <div class="entry left">
+      <div class="entry-content">
+        <h3>Today</h3>
+        <p><strong>Megalodon is extinct.</strong> Only teeth and fossil remains survive. Its closest relatives are lamniform sharks like the great white.</p>
+      </div>
+    </div>
+  </div>
+
+
+<h1>Megalodon Real-Time Chart Dashboard</h1>
+
+  <div class="grid">
+    <div class="chart-box"><canvas id="chart1"></canvas></div>
+    <div class="chart-box"><canvas id="chart2"></canvas></div>
+    <div class="chart-box"><canvas id="chart3"></canvas></div>
+    <div class="chart-box"><canvas id="chart4"></canvas></div>
+  </div>
+<script>
+    const createChart = (ctx, label, color) => {
+      return new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label,
+            borderColor: color,
+            backgroundColor: color + '33',
+            data: [],
+            fill: true,
+            tension: 0.4
+          }]
+        },
+        options: {
+          animation: {
+            duration: 300
+          },
+          responsive: true,
+          scales: {
+            x: {
+              ticks: { color: '#aaa' },
+              grid: { color: '#333' }
+            },
+            y: {
+              ticks: { color: '#aaa' },
+              grid: { color: '#333' },
+              min: 0,
+              max: 100
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: '#fff' }
+            }
+          }
+        }
+      });
+    };
+
+    const chart1 = createChart(document.getElementById('chart1').getContext('2d'), 'Bite Force %', '#ff6384');
+    const chart2 = createChart(document.getElementById('chart2').getContext('2d'), 'Ocean Temp °C', '#36a2eb');
+    const chart3 = createChart(document.getElementById('chart3').getContext('2d'), 'Population Index', '#ffcd56');
+    const chart4 = createChart(document.getElementById('chart4').getContext('2d'), 'Speed Burst %', '#4bc0c0');
+
+    let t = 0;
+    const updateCharts = () => {
+      const labels = [`${t}s`];
+      const values = {
+        bite: Math.random() * 100,
+        temp: 15 + Math.sin(t / 10) * 5,
+        pop: 50 + Math.cos(t / 8) * 30,
+        speed: Math.random() * 100
+      };
+
+      const pushData = (chart, value) => {
+        chart.data.labels.push(`${t}s`);
+        chart.data.datasets[0].data.push(value);
+        if (chart.data.labels.length > 20) {
+          chart.data.labels.shift();
+          chart.data.datasets[0].data.shift();
+        }
+        chart.update();
+      };
+
+      pushData(chart1, values.bite);
+      pushData(chart2, values.temp);
+      pushData(chart3, values.pop);
+      pushData(chart4, values.speed);
+
+      t++;
+    };
+
+    setInterval(updateCharts, 1000); // Update every second
+  </script>
+
+</body>
+</html>
