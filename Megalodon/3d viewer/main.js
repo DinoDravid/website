@@ -81,13 +81,8 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-const loader = new THREE.CubeTextureLoader();
-const texture = loader.load([
-  'skybox/px.jpg',
-  'skybox/nx.jpg',
-  'skybox/py.jpg',
-  'skybox/ny.jpg',
-  'skybox/pz.jpg',
-  'skybox/nz.jpg'
-]);
-scene.background = texture;
+
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1); // color, intensity
+scene.add(ambientLight);
+
