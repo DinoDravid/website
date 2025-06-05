@@ -5,8 +5,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x87CEEB); // sky blue
-
+renderer.setClearColor(0xADD8E6); // light blue
 renderer.setPixelRatio(window.devicePixelRatio);
 
 // Disable shadows
@@ -33,7 +32,7 @@ controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
 // Bright white ambient light
-const ambientLight = new THREE.AmbientLight(0xffffff, 2.5); // Bright white light
+const ambientLight = new THREE.AmbientLight(0xffffff, 3.5); // Bright white light
 scene.add(ambientLight);
 
 // Optional: directional light to simulate sunlight (no shadow)
@@ -42,7 +41,7 @@ directionalLight.position.set(5, 10, 7);
 scene.add(directionalLight);
 
 // Ground
-const groundGeometry = new THREE.PlaneGeometry(20, 20);
+const groundGeometry = new THREE.PlaneGeometry(200, 200);
 groundGeometry.rotateX(-Math.PI / 2);
 const groundMaterial = new THREE.MeshStandardMaterial({
   color: 0xaaaaaa,
