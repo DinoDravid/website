@@ -81,4 +81,36 @@ function animate() {
   renderer.render(scene, camera);
 }
 
+let mixer;
+
+loader.load('scene.gltf', (gltf) => {
+  const model = gltf.scene;
+  scene.add(model);
+
+  mixer = new THREE.AnimationMixer(model);
+  gltf.animations.forEach((clip) => mixer.clipAction(clip).play());
+}, undefined, console.error);
+
+
+import { Water } from 'three/addons/objects/Water.js';
+import { TextureLoader } from 'three';
+
+const waterGeometry = new THREE.PlaneGeometry(100, 100);
+const water = new Water(waterGeometry, {
+  textureWidth: 512,
+  textureHeight: 512,
+  waterNormals: new TextureLoader().load('textures/waternormals.jpg', texture => {
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+  }),
+  sunDirection: new THREE.Vector3(),
+  sunColor: 0xffffff,
+  waterColor: 0x001e0f,
+  distortionScale: 3.7,
+  fog: scene.fog !== undefined
+});
+
+water.rotation.x = - Math.PI / 2;
+scene.add(water);
+
+
 animate();
