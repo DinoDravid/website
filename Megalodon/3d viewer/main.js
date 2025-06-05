@@ -81,6 +81,14 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2); // skyColor, groundColor, intensity
-hemiLight.position.set(0, 20, 0);
-scene.add(hemiLight);
+
+
+
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+
+const rgbeLoader = new RGBELoader();
+rgbeLoader.load('skybox/skyrender.png', function (texture) {
+  texture.mapping = THREE.EquirectangularReflectionMapping;
+  scene.environment = texture;
+  scene.background = texture;
+});
