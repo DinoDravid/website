@@ -4,12 +4,11 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0x000000);
 renderer.setPixelRatio(window.devicePixelRatio);
 
-// ✅ Remove shadows entirely
+// Disable shadows
 renderer.shadowMap.enabled = false;
 
 document.body.appendChild(renderer.domElement);
@@ -32,32 +31,30 @@ controls.autoRotate = false;
 controls.target = new THREE.Vector3(0, 1, 0);
 controls.update();
 
-// Ground (optional)
+// Bright white ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 2.5); // Bright white light
+scene.add(ambientLight);
+
+// Optional: directional light to simulate sunlight (no shadow)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+directionalLight.position.set(5, 10, 7);
+scene.add(directionalLight);
+
+// Ground
 const groundGeometry = new THREE.PlaneGeometry(20, 20);
 groundGeometry.rotateX(-Math.PI / 2);
 const groundMaterial = new THREE.MeshStandardMaterial({
-  color: 0x888888,
+  color: 0xaaaaaa,
   side: THREE.DoubleSide
 });
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
 scene.add(groundMesh);
 
-// ✅ Add bright global lighting
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.2);
-scene.add(ambientLight);
-
-const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.0);
-hemiLight.position.set(0, 20, 0);
-scene.add(hemiLight);
-
-// ✅ Remove spotlight and shadows
-
-// Model loader
+// Load Model
 const loader = new GLTFLoader().setPath('public/meglodon/');
 loader.load('scene.gltf', (gltf) => {
   const mesh = gltf.scene;
 
-  // ✅ No shadows needed
   mesh.traverse((child) => {
     if (child.isMesh) {
       child.castShadow = false;
@@ -68,22 +65,22 @@ loader.load('scene.gltf', (gltf) => {
   mesh.position.set(0, 1.05, -1);
   scene.add(mesh);
 
-  const progress = document.getElementById('progress-container');
-  if (progress) progress.style.display = 'none';
+  const progressBar = document.getElementById('progress-container');
+  if (progressBar) progressBar.style.display = 'none';
 }, (xhr) => {
   console.log(`loading ${xhr.loaded / xhr.total * 100}%`);
 }, (error) => {
   console.error(error);
 });
 
-// Handle resizing
+// Responsive Resize
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
 
-// Animation loop
+// Animate
 function animate() {
   requestAnimationFrame(animate);
   controls.update();
