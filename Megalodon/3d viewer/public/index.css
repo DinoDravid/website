@@ -26,7 +26,8 @@ img{
 }
 
 h1 {
-  color: rgb(215, 215, 215);
+  #color: rgb(215, 215, 215);
+  color:linear-gradient(to bottom, #33ccff 0%, #006666 100%);
   font-size: 4em;
   margin: 0px;
   font-weight: 100;
