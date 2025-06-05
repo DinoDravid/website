@@ -44,7 +44,7 @@ scene.add(groundMesh);
 const spotLight = new THREE.SpotLight(0xffffff, 3000, 100, 0.22, 1);
 spotLight.position.set(0, 45, 0);
 spotLight.castShadow = true;
-spotLight.shadow.bias = -0.0001;
+spotLight.shadow.bias = -0.0010;
 scene.add(spotLight);
 
 const loader = new GLTFLoader().setPath('public/meglodon/');
