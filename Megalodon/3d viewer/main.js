@@ -41,7 +41,7 @@ groundMesh.castShadow = false;
 groundMesh.receiveShadow = false;
 scene.add(groundMesh);
 
-const spotLight = new THREE.SpotLight(0xffffff, 2000, 50, 0.22, 1);
+const spotLight = new THREE.SpotLight(0xffffff, 3000, 100, 0.22, 1);
 spotLight.position.set(0, 45, 0);
 spotLight.castShadow = false;
 spotLight.shadow.bias = -0.0001;
