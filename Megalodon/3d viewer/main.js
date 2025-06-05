@@ -81,8 +81,6 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-
-
-const ambientLight = new THREE.AmbientLight(0xffffff, 1); // color, intensity
-scene.add(ambientLight);
-
+const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 1.2); // skyColor, groundColor, intensity
+hemiLight.position.set(0, 20, 0);
+scene.add(hemiLight);
