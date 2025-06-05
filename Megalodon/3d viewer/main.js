@@ -80,15 +80,3 @@ function animate() {
   controls.update();
   renderer.render(scene, camera);
 }
-
-
-
-
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
-
-const rgbeLoader = new RGBELoader();
-rgbeLoader.load('skybox/skyrender.png', function (texture) {
-  texture.mapping = THREE.EquirectangularReflectionMapping;
-  scene.environment = texture;
-  scene.background = texture;
-});
