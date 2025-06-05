@@ -37,7 +37,7 @@ const groundMaterial = new THREE.MeshStandardMaterial({
   side: THREE.DoubleSide
 });
 const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-groundMesh.castShadow = true;
+groundMesh.castShadow = false;
 groundMesh.receiveShadow = true;
 scene.add(groundMesh);
 
