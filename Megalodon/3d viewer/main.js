@@ -95,59 +95,5 @@ animate();
 
 
 
-let model; // Make the mesh accessible globally
 
-// Inside the loader
-loader.load('scene.gltf', (gltf) => {
-  model = gltf.scene;
-
-  model.traverse((child) => {
-    if (child.isMesh) {
-      child.castShadow = false;
-      child.receiveShadow = false;
-    }
-  });
-
-  model.position.set(0, 1.05, -1);
-  scene.add(model);
-
-  const progressBar = document.getElementById('progress-container');
-  if (progressBar) progressBar.style.display = 'none';
-}, ...);
-
-
-
-
-
-// Keyboard movement
-document.addEventListener('keydown', (event) => {
-  if (!model) return;
-
-  const step = 0.1;
-
-  switch (event.key) {
-    case 'ArrowUp':
-    case 'w':
-      model.position.z -= step;
-      break;
-    case 'ArrowDown':
-    case 's':
-      model.position.z += step;
-      break;
-    case 'ArrowLeft':
-    case 'a':
-      model.position.x -= step;
-      break;
-    case 'ArrowRight':
-    case 'd':
-      model.position.x += step;
-      break;
-    case 'q':
-      model.position.y += step;
-      break;
-    case 'e':
-      model.position.y -= step;
-      break;
-  }
-});
 
