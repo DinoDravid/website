@@ -5,8 +5,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.setSize(window.innerWidth, window.innerHeight);
-//renderer.setClearColor(0xADD8E6); // light blue
-renderer.setClearColor(0x001144);
+renderer.setClearColor(0xADD8E6); // light blue
+//renderer.setClearColor(0x001144);
 
 renderer.setPixelRatio(window.devicePixelRatio);
 
