@@ -94,8 +94,27 @@ animate();
 
 
 
-
 let model; // Make the mesh accessible globally
+
+// Inside the loader
+loader.load('scene.gltf', (gltf) => {
+  model = gltf.scene;
+
+  model.traverse((child) => {
+    if (child.isMesh) {
+      child.castShadow = false;
+      child.receiveShadow = false;
+    }
+  });
+
+  model.position.set(0, 1.05, -1);
+  scene.add(model);
+
+  const progressBar = document.getElementById('progress-container');
+  if (progressBar) progressBar.style.display = 'none';
+}, ...);
+
+
 
 
 
